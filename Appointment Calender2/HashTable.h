@@ -30,12 +30,13 @@ class HashTable
         HashTable(int);
         ~HashTable();
         void insertAppt(string in_title, int month, int day, int stime, int etime, string notes);
-        Appt* findAppt(int month, int day);
-        void deleteAppt(string in_title);
+        void findApptByTitle(string);
+        void deleteAppt(int,int, string);
         int hashSum(int x, int s);
         void print7Days(int, int);
         void printMonth(int);
         void printDay(int month, int day);
+        void reviseAppt();
     protected:
     private:
         Appt *hashTable[372];

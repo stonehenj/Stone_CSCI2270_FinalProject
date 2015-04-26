@@ -64,19 +64,24 @@ void HashTable::insertAppt(std::string in_title, int month, int day, int stime, 
     }
 
 }
-Appt*  HashTable::findAppt(int m, int d)
+void  HashTable::findApptByTitle(string title)
 {
-
-    Appt *x = hashTable[hashSum(m,d)];
-    while(x!=NULL)
+    for(int i = 0;i<372;i++)
     {
-        if(x->month == m && x->day == d)
+
+
+
+        Appt *x = hashTable[i];
+        while(x!=NULL)
         {
-            //printDay();
-            /*
-            return x;*/
+            if(x->title == title)
+            {
+                cout<<x->title<<":"<<x->month<<"/"<<x->day<<"/"<<"2015"<<":"<<x->stime<<" to "<<x->etime<<endl;
+                cout<<"--"<<x->notes<<"--"<<endl;
+                return;
+            }
+            x = x->next;
         }
-        x = x->next;
     }
     cout<<"not found"<<endl;
 }
@@ -107,23 +112,53 @@ void HashTable::print7Days(int m, int d)
         printDay(m,i);
     }
 }
-/*void HashTable::deleteMovie(std::string in_title)
+void HashTable::deleteAppt(int m, int d, string title)
 {
-    Movie *x = hashTable[hashSum(in_title,10)];
-    Movie *y;
-    while(x!=NULL)
+    Appt *x = hashTable[hashSum(m,d)];
+    Appt *y;
+    if(title == x-> title)
     {
-        if(in_title == x->title)
+        y = x->next;
+        hashTable[hashSum(m,d)] = y;
+        delete x;
+        x = NULL;
+        y = NULL;
+        return;
+    }
+    else
+    {
+
+
+        while(x->next!=NULL)
         {
-            y = x->next;
-            delete x;
-            x = y;
-            return;
+            if(title == x->next->title)
+            {
+                y = x->next;
+                x->next = y->next;
+                y->next = NULL;
+                delete y;
+                y = NULL;
+                return;
+            }
+            x = x->next;
         }
-        x = x->next;
     }
 
-}*/
+}
+void HashTable::reviseAppt(int m, string title)
+{
+    for(int i = 1;i<32;i++)
+    {
+        while(x != NULL)
+        {
+            Appt *x = hashTable[hashSum(m,i)];
+            if(x->title == title)
+            {
+
+            }
+        }
+    }
+}
 /*void HashTable::printInventory()
 {
     for(int i = 0;i<10;i++)

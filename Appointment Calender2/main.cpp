@@ -62,15 +62,66 @@ int main()
         }
         if(choice == "2")
         {
-            cout<<"Enter title:"<<endl;
+            cout<<"Enter month of appointment(by number~Jan=1,Feb=2,etc):"<<endl;
             cin.ignore();
+            getline(cin,month);
+            m = atoi(month.c_str());
+            cout<<"Enter day of appointment(by number~1 to 31):"<<endl;
+            getline(cin,day);
+            d = atoi(day.c_str());
+            cout<<"Here are all of the appointments that day"<<endl;
+            h.printDay(m,d);
+            cout<<"Enter the title of appointment to delete:"<<endl;
+            getline(cin,title);
+            h.deleteAppt(m,d,title);
 
 
         }
         if(choice == "3")
         {
-            cout<<"Enter title:"<<endl;
+            cout<<"Enter month of appointment(by number~Jan=1,Feb=2,etc):"<<endl;
             cin.ignore();
+            getline(cin, month);
+            m = atoi(month.c_str());
+            cout<<"Here are all of the appointments for this month:"<<endl;
+            h.printMonth(m);
+            cout<<"What is the name of the appointment you wish to revise?:"<<endl;
+            getline(cin,title);
+
+        }
+        if(choice == "4")
+        {
+            cout<<"Do you remember the month of the appointment(y or n)?:"<<endl;
+            cin.ignore();
+            getline(cin,month);
+            if(month == "y")
+            {
+                Cout<<"Enter month:"<<endl;
+                getline(cin,month);
+                m = atoi(month.c_str());
+                cout<<"Do you remember the day of the appointment(y or n)?"<<endl;
+                getline(cin,day);
+                if(day == "y")
+                {
+                    cout<<"Enter day:"<<endl;
+                    getline(cin, day);
+                    d = atoi(day.c_str());
+                    cout<<"Here are all of the appointments for that day:"<<endl;
+                    h.printDay(m,d);
+                    return;
+                }
+                cout<<"Here are all of the appointments for this month:"<<endl;
+                h.printMonth(m);
+                return;
+            }
+            cout<<"Do you remember the name of the appointment(y or n?):"<<endl;
+            getline(cin, title);
+            if(title == "y")
+            {
+                cout<<"Enter name:"<<endl;
+                getline(cin,title);
+                h.findApptByTitle(title);
+            }
 
         }
         if(choice == "7")
